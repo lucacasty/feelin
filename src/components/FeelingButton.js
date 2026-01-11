@@ -8,7 +8,7 @@ const FeelingButton = ({id,label,icon: IconComponent, background}) => {
   const dispatch = useDispatch();
 
   const phrases = {
-    happy: "I'm feeling great today! Everything is awesome!",
+    happy: "I'm feeling great today! Ask me how my day went.",
     sad: "I'm feeling a bit down today. Could use some cheering up.",
     bored: "I'm so bored! I need something exciting to do.",
     anxious: "I'm feeling anxious and stressed out right now.",

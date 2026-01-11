@@ -4,6 +4,8 @@
   align-items: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding: 1rem;
+  margin-bottom: calc(57px + 5rem);
+  padding-top: 0px;
 }
 
 .app-name {
@@ -59,7 +61,8 @@ button:hover {
 .searchBar-container {
   width: 90%;
   position: fixed;
-  bottom: 60px;
+  bottom: 57px;
+  background-color: #09090b;
 }
 
 .searchBar {
@@ -68,6 +71,7 @@ button:hover {
   align-items: center;
   gap: 2rem;
   padding: 1rem;
+  padding-top: 0px;
 }
 
 .searchBar button {
