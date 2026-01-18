@@ -29,8 +29,7 @@ const Chat = () => {
 
   useEffect(() => {
     if (generalSettings.firstMessage) {
-      setInputValue(generalSettings.firstMessage);
-      setTimeout(handleSend, 3000); //TODO: NOT WORKING 
+      handleSend(generalSettings.firstMessage);
     }
   }, [generalSettings.firstMessage]);
 
@@ -67,14 +66,20 @@ const Chat = () => {
     setInputValue(event.target.value);
   };
 
-  const handleSend = async () => {
-    if (noChatPrompt) return;
+  const handleSend = async (message) => {
+    if (noChatPrompt && !message) return;
 
-    const chatPrompt = `${inputValue}`;
+    let chatPrompt;
+    if (message) {
+      chatPrompt = message;
+    } else {
+      chatPrompt = `${inputValue}`;
+    }
+    
     try {
       const messages = [
         ...historyMessages,
-        { role: 'user', content: 'Answer only to what I will write now: ' + inputValue },
+        { role: 'user', content: 'Answer only to what I will write now: ' + chatPrompt },
       ];
 
       const chatCompletion = await groq.chat.completions.create({
@@ -93,7 +98,7 @@ const Chat = () => {
       setChatMessages((prev) => [...prev, newChatMessage]);
       setHistoryMessages((prev) => [
         ...prev,
-        { role: 'user', content: inputValue },
+        { role: 'user', content: chatPrompt },
         { role: 'assistant', content: responseContent },
       ]);
       setIsChatVisible(true);
